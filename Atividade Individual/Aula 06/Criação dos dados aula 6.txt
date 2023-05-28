@@ -1,0 +1,43 @@
+
+CREATE TABLE Alunos (
+  NroMatricula SERIAL PRIMARY KEY,
+  CPF VARCHAR(11) UNIQUE,
+  Nome VARCHAR(255),
+  Endereco VARCHAR(255),
+  Telefone VARCHAR(20),
+  AnoNascimento INTEGER
+);
+
+
+CREATE TABLE Disciplina (
+  CodDisciplina SERIAL PRIMARY KEY,
+  Nome VARCHAR(255),
+  CodCurso INTEGER REFERENCES Curso(CodCurso)
+);
+
+
+CREATE TABLE Matricula (
+  NroMatricula INTEGER REFERENCES Alunos(NroMatricula),
+  CodDisciplina INTEGER REFERENCES Disciplina(CodDisciplina),
+  Semestre INTEGER,
+  Ano INTEGER,
+  Nota NUMERIC(4, 2),
+  NroFaltas INTEGER,
+  PRIMARY KEY (NroMatricula, CodDisciplina)
+);
+
+
+INSERT INTO Alunos (CPF, Nome, Endereco, Telefone, AnoNascimento)
+VALUES ('12345678900', 'João Silva', 'Rua A, 123', '99999999', 2000),
+       ('98765432100', 'Maria Santos', 'Avenida B, 456', '88888888', 1999);
+
+-- Inserção de dados na tabela "Disciplina"
+INSERT INTO Disciplina (Nome, CodCurso)
+VALUES ('Matemática', 1),
+       ('História', 2);
+
+
+INSERT INTO Matricula (NroMatricula, CodDisciplina, Semestre, Ano, Nota, NroFaltas)
+VALUES (1, 1, 1, 2022, 9.5, 2),
+       (1, 2, 2, 2022, 8.0, 1),
+       (2, 1, 1, 2022, 7.8, 3);

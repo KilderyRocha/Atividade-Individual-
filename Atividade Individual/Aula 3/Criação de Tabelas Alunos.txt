@@ -1,0 +1,15 @@
+
+CREATE TABLE SalaDeAula (
+  sala_id SERIAL PRIMARY KEY,
+  capacidade INT
+  
+);
+
+
+CREATE TABLE Aluno (
+  aluno_id SERIAL PRIMARY KEY,
+  sala_id INT,
+  nome VARCHAR(255),
+  
+  FOREIGN KEY (sala_id) REFERENCES SalaDeAula(sala_id)
+);

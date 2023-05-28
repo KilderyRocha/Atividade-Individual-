@@ -1,0 +1,37 @@
+
+CREATE TABLE Cliente (
+  client_id INT PRIMARY KEY,
+  nome VARCHAR(255),
+  endereco VARCHAR(255),
+  telefone VARCHAR(20),
+  
+);
+
+
+CREATE TABLE Produto (
+  produto_id INT PRIMARY KEY,
+  nome VARCHAR(255),
+  descricao VARCHAR(255),
+  preco DECIMAL(10, 2),
+ 
+);
+
+
+CREATE TABLE Locacao (
+  locacao_id INT PRIMARY KEY,
+  client_id INT,
+  data_inicio DATE,
+  data_fim DATE,
+  -- Outras colunas relacionadas à locação
+  FOREIGN KEY (client_id) REFERENCES Cliente(client_id)
+);
+
+CREATE TABLE Item_Locacao (
+  item_id INT PRIMARY KEY,
+  locacao_id INT,
+  produto_id INT,
+  quantidade INT,
+  -- Outras colunas relacionadas ao item de locação
+  FOREIGN KEY (locacao_id) REFERENCES Locacao(locacao_id),
+  FOREIGN KEY (product_id) REFERENCES Produto(product_id)
+);

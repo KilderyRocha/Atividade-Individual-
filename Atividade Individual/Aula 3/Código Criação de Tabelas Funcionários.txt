@@ -1,0 +1,17 @@
+
+CREATE TABLE Funcionario (
+  func_id SERIAL PRIMARY KEY,
+  nome VARCHAR(255),
+  cargo VARCHAR(255)
+  
+);
+
+
+CREATE TABLE Premiacao (
+  prem_id SERIAL PRIMARY KEY,
+  func_id INT,
+  data DATE,
+  valor DECIMAL(10, 2),
+  
+  FOREIGN KEY (func_id) REFERENCES Funcionario(func_id)
+);

@@ -1,0 +1,17 @@
+
+CREATE TABLE Condominio (
+  condo_id SERIAL PRIMARY KEY,
+  nome VARCHAR(255),
+  endereco VARCHAR(255)
+ 
+);
+
+
+CREATE TABLE VagaGaragem (
+  vaga_id SERIAL PRIMARY KEY,
+  condo_id INT,
+  numero INT,
+  ocupada BOOLEAN,
+  -- Outras colunas relacionadas à vaga de garagem
+  FOREIGN KEY (condo_id) REFERENCES Condominio(condo_id)
+);
